@@ -14,6 +14,7 @@ export class AppComponent {
     readonly dpiRatio = 96 / 72;
 
     public pdfSrc = './pdf-test.pdf';
+    public pdfEx = './OoPdfFormExample.pdf';
 
     public myForm: FormGroup;
 

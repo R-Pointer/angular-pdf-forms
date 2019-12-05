@@ -10,7 +10,8 @@
       "assets": [
         "assets",
         "favicon.ico",
-        "pdf-test.pdf"
+        "pdf-test.pdf",
+        "OoPdfFormExample.pdf"
       ],
       "index": "index.html",
       "main": "main.ts",
