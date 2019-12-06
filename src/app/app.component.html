@@ -1,7 +1,10 @@
 <div class="container">
 
     <pre class="form-value">{{myForm.value | json}}</pre>
-
+    <div>
+      <button (click)="logJSON()" style="height: 50px">Log JSON</button>
+      <button (click)="saveToPDF()" style="height: 50px">Save to PDF</button>
+    </div>
   <!-- Little trick to center the inputs to the viewer -->
     <div class="form-container">
         <form id="input-form" [formGroup]="myForm" novalidate>
@@ -9,35 +12,34 @@
         <!-- Cycle through all the inputs -->
         <div *ngFor="let input of inputList; let i=index" [ngSwitch]="input.type">
 
-            <input *ngSwitchCase="'checkbox'" 
-                [name]="input.name" 
-                type="checkbox" 
-                [formControlName]="input.name" 
-                [value]="input.value" 
+            <input *ngSwitchCase="'checkbox'"
+                [name]="input.name"
+                type="checkbox"
+                [formControlName]="input.name"
+                [(ngModel)]="input.value"
                 [ngStyle]="getInputPosition(input)">
 
-
-            <input *ngSwitchCase="'radio'" 
-                [name]="input.name" 
-                type="radio" 
-                [formControlName]="input.name" 
-                [value]="input.value" 
+            <input *ngSwitchCase="'radio'"
+                [name]="input.name"
+                type="radio"
+                [formControlName]="input.name"
+                [value]="input.value"
                 [ngStyle]="getInputPosition(input)">
 
             <!-- Insert an input accordingly and get the style/position from the component -->
-            <input *ngSwitchDefault 
-                [name]="input.name" 
-                type="text" 
-                [formControlName]="input.name" 
-                [value]="input.value" 
+            <input *ngSwitchDefault
+                [name]="input.name"
+                type="text"
+                [formControlName]="input.name"
+                [(ngModel)]="input.value"
                 [ngStyle]="getInputPosition(input)">
 
         </div>
         </form>
     </div>
-
     <!-- Bind the zoom variable to the viewer component -->
     <pdf-viewer id="viewer" [src]="pdfSrc" [zoom]="zoom" (after-load-complete)="loadComplete($event)"></pdf-viewer>
+
 </div>
 
 <!-- Add some button -->
