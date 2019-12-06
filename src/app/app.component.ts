@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { PDFDocumentProxy } from 'ng2-pdf-viewer';
 import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
 import { Input } from './input';
-import {PDFDocument} from 'pdf-lib';
 
 @Component({
     selector: 'app-root',
@@ -17,8 +16,6 @@ export class AppComponent {
     public pdfSrc = './pdf-test.pdf';
     public pdfEx = './OoPdfFormExample.pdf';
 
-    // private pdfDoc;
-
     public jsonURL = './sampleInput.json';
     public jsonData;
 
@@ -30,16 +27,7 @@ export class AppComponent {
 
     constructor(private _fb: FormBuilder) {
         this.myForm = this._fb.group({});
-        // this.setupPDF();
      }// end constructor
-
-    /*private async setupPDF() {
-      const pdfMeta = await fetch(this.pdfSrc).then(res => res.arrayBuffer());
-      let pages;
-      this.pdfDoc = await PDFDocument.load(pdfMeta).then(res => pages = res.getPages());
-      console.log(this.pdfDoc);
-      console.log(pages[0]);
-    }// end setupPDF*/
 
     private createInput(annotation: PDFAnnotationData, rect: number[] = null) {
         let formControl = new FormControl(annotation.buttonValue || '');
